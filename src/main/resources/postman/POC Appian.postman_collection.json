@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "d662c310-fa03-42a0-9e55-84341f8485fc",
+		"name": "POC Appian",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22807705"
+	},
+	"item": [
+		{
+			"name": "Appian Req",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "System@1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "mulesoft",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"OppName\": \"Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rfzc.appian.community/suite/webapi/email",
+					"protocol": "https",
+					"host": [
+						"rfzc",
+						"appian",
+						"community"
+					],
+					"path": [
+						"suite",
+						"webapi",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mule Req",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"OppName\": \"Test 73\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"email"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

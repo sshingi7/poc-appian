@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:sockets="http://www.mulesoft.org/schema/mule/sockets"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/sockets http://www.mulesoft.org/schema/mule/sockets/current/mule-sockets.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="567b58e4-64e6-4ca1-9f81-358f8e9104c2" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="92c8d9ea-a541-4643-bd01-d2c14e77ba1c" basePath="/suite/webapi" >
+		<http:request-connection protocol="HTTPS" host="rfzc.appian.community" port="443" >
+			<http:authentication >
+				<http:basic-authentication username="mulesoft" password="System@1234" />
+			</http:authentication>
+		</http:request-connection>
+	</http:request-config>
+	<flow name="poc-appianFlow" doc:id="60e8c516-c4d6-41e4-8981-1fbf228215b5" >
+		<http:listener doc:name="Listener" doc:id="3eb63892-33b7-493e-a5bb-7536bc04e083" config-ref="HTTP_Listener_config" path="/email"/>
+		<logger level="INFO" doc:name="Logger" doc:id="4a7ae6c0-8d51-42b5-8cad-986ada82b6e1" message='#["Start"]'/>
+		<http:request method="POST" doc:name="Request" doc:id="9db3fac9-a7fc-4f67-98c0-cb09205e5faa" config-ref="HTTP_Request_configuration" path="/email"/>
+		<set-payload value='#["Success"]' doc:name="Set Payload" doc:id="8644a830-b801-4ba7-9d32-408c06a056a2" />
+		<logger level="INFO" doc:name="Logger" doc:id="02e14cf7-1f3f-4377-ab4c-5b77b1e94807" message='#["End"]'/>
+	</flow>
+</mule>
